@@ -791,15 +791,15 @@
 				bias-disable;
 			};
 		};
-/*HS50-HS50-SR-QL3095-01-137 rm common gpio3 hs70 not used,hs50 config in camera_dts added by xuxianwei at 2020/08/17 start*/
+
 		i2c_1 {
 			i2c_1_active: i2c_1_active {
 				mux {
-					pins = "gpio2";
+					pins = "gpio2", "gpio3";
 					function = "blsp_i2c1";
 				};
 				config {
-					pins = "gpio2";
+					pins = "gpio2", "gpio3";
 					drive-strength = <2>;
 					bias-pull-up;
 				};
@@ -807,17 +807,17 @@
 
 			i2c_1_sleep: i2c_1_sleep {
 				mux {
-					pins = "gpio2";
+					pins = "gpio2", "gpio3";
 					function = "blsp_i2c1";
 				};
 				config {
-					pins = "gpio2";
+					pins = "gpio2", "gpio3";
 					drive-strength = <2>;
 					bias-disable;
 				};
 			};
 		};
-/*HS50-HS50-SR-QL3095-01-137 rm common gpio3 hs70 not used,hs50 config in camera_dts added by xuxianwei at 2020/08/17 end*/
+
 		i2c_2 {
 			i2c_2_active: i2c_2_active {
 				/* active state */
@@ -908,36 +908,6 @@
 			};
 		};
 
-		i2c_6 {
-			i2c_6_active: i2c_6_active {
-				/* active state */
-				mux {
-					pins = "gpio22", "gpio23";
-					function = "blsp_i2c6";
-				};
-
-				config {
-					pins = "gpio22", "gpio23";
-					drive-strength = <2>;
-					bias-disable;
-				};
-			};
-
-			i2c_6_sleep: i2c_6_sleep {
-				/* suspended state */
-				mux {
-					pins = "gpio22", "gpio23";
-					function = "gpio";
-				};
-
-				config {
-					pins = "gpio22", "gpio23";
-					drive-strength = <2>;
-					bias-disable;
-				};
-			};
-		};
-
 		nfc {
 			nfc_int_active: nfc_int_active {
 				/* active state */
@@ -996,68 +966,6 @@
 
 				config {
 					pins = "gpio16", "gpio62", "gpio141";
-					drive-strength = <2>; /* 2 MA */
-					bias-disable;
-				};
-			};
-
-			sec_nfc_int_active: sec_nfc_int_active {
-				/* active state */
-				mux {
-					/* GPIO 17 NFC Read Interrupt */
-					pins = "gpio17";
-					function = "gpio";
-				};
-
-				config {
-					pins = "gpio17";
-					drive-strength = <2>; /* 2 MA */
-					bias-pull-up;
-				};
-			};
-
-			sec_nfc_int_suspend: sec_nfc_int_suspend {
-				/* sleep state */
-				mux {
-					/* GPIO 17 NFC Read Interrupt */
-					pins = "gpio17";
-					function = "gpio";
-				};
-
-				config {
-					pins = "gpio17";
-					drive-strength = <2>; /* 2 MA */
-					bias-pull-up;
-				};
-			};
-
-			sec_nfc_disable_active: sec_nfc_disable_active {
-				/* active state */
-				mux {
-					/* 16: NFC ENABLE 62: FW DNLD */
-					/* 141: ESE Enable */
-					pins = "gpio33", "gpio62", "gpio141";
-					function = "gpio";
-				};
-
-				config {
-					pins = "gpio33", "gpio62", "gpio141";
-					drive-strength = <2>; /* 2 MA */
-					bias-pull-up;
-				};
-			};
-
-			sec_nfc_disable_suspend: sec_nfc_disable_suspend {
-				/* sleep state */
-				mux {
-					/* 16: NFC ENABLE 62: FW DNLD */
-					/* 141: ESE Enable */
-					pins = "gpio33", "gpio62", "gpio141";
-					function = "gpio";
-				};
-
-				config {
-					pins = "gpio33", "gpio62", "gpio141";
 					drive-strength = <2>; /* 2 MA */
 					bias-disable;
 				};
@@ -1314,6 +1222,35 @@
 				config {
 					pins = "gpio63";
 					drive-strength = <2>;
+					bias-pull-down;
+				};
+			};
+		};
+
+		/* WSA VI sense */
+		wsa-vi {
+			wsa_vi_on: wsa_vi_on {
+				mux {
+					pins = "gpio94", "gpio95";
+					function = "wsa_io";
+				};
+
+				config {
+					pins = "gpio94", "gpio95";
+					drive-strength = <8>; /* 8 MA */
+					bias-disable; /* NO pull */
+				};
+			};
+
+			wsa_vi_off: wsa_vi_off {
+				mux {
+					pins = "gpio94", "gpio95";
+					function = "wsa_io";
+				};
+
+				config {
+					pins = "gpio94", "gpio95";
+					drive-strength = <2>; /* 2 MA */
 					bias-pull-down;
 				};
 			};
@@ -1724,16 +1661,16 @@
 				};
 			};
 		};
-		/* huaqin to set smartpa irq&&reset to delete defalut gpio by xuyuqing at 2019/10/31 start */
+
 		tlmm_gpio_key {
 			gpio_key_active: gpio_key_active {
 				mux {
-					pins = "gpio85";
+					pins = "gpio85", "gpio86", "gpio87";
 					function = "gpio";
 				};
 
 				config {
-					pins = "gpio85";
+					pins = "gpio85", "gpio86", "gpio87";
 					drive-strength = <2>;
 					bias-pull-up;
 				};
@@ -1741,18 +1678,17 @@
 
 			gpio_key_suspend: gpio_key_suspend {
 				mux {
-					pins = "gpio85";
+					pins = "gpio85", "gpio86", "gpio87";
 					function = "gpio";
 				};
 
 				config {
-					pins = "gpio85";
+					pins = "gpio85", "gpio86", "gpio87";
 					drive-strength = <2>;
 					bias-pull-up;
 				};
 			};
 		};
-		/* huaqin to set smartpa irq&&reset to delete defalut gpio by xuyuqing at 2019/10/31 end */
 		pmx_qdsd_clk {
 			qdsd_clk_sdcard: clk_sdcard {
 				config {

@@ -146,9 +146,3 @@
 	/delete-node/ case-therm-adc;
 	/delete-node/ case-therm-step;
 };
-
-/* HS70 add for HS70-196 replace xo-therm with MSM-therm in adc_tm by qianyingdong at 2019/10/31 start */
-&pm8953_adc_tm {
-	/delete-node/ chan@32;
-};
-/* HS70 add for HS70-196 replace xo-therm with MSM-therm in adc_tm by qianyingdong at 2019/10/31 end */

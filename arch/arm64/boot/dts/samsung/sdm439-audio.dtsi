@@ -15,9 +15,7 @@
 	int_codec: sound {
 		qcom,model = "sdm439-snd-card-mtp";
 		qcom,msm-hs-micbias-type = "internal";
-		/* HS60 modify HS60-402 hardware micbias2 no ext cap by xudayi at 2019/08/12 start */
-		//qcom,msm-micbias2-ext-cap;
-		/* HS60 modify HS60-402 hardware micbias2 no ext cap by xudayi at 2019/08/12 end */
+		qcom,msm-micbias2-ext-cap;
 
 		asoc-codec = <&stub_codec>, <&msm_digital_codec>,
 				<&pmic_analog_codec>;

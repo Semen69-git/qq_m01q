@@ -150,7 +150,7 @@
 		pm8953_l2: regulator-l2 {
 			regulator-min-microvolt = <975000>;
 			regulator-max-microvolt = <1225000>;
-			qcom,init-voltage = <1200000>;
+			qcom,init-voltage = <975000>;
 			status = "okay";
 		};
 	};

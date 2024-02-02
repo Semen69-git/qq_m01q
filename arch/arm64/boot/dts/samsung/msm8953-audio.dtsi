@@ -167,13 +167,11 @@
 		status = "okay";
 		#address-cells = <1>;
 		#size-cells = <0>;
-		/* HS50 add SR-QL3095-01-48 bring up spc pa by xuyuqing at 2020/08/07 start */
 		wsa881x_i2c_f: wsa881x-i2c-codec@f {
-			status = "disabled";
+			status = "okay";
 			compatible = "qcom,wsa881x-i2c-codec";
 			reg = <0x0f>;
-			//qcom,wsa-analog-vi-gpio = <&wsa881x_analog_vi_gpio>;
-		/* HS50 add SR-QL3095-01-48 bring up spc pa by xuyuqing at 2020/08/07 end */
+			qcom,wsa-analog-vi-gpio = <&wsa881x_analog_vi_gpio>;
 			qcom,wsa-analog-clk-gpio = <&wsa881x_analog_clk_gpio>;
 			qcom,wsa-analog-reset-gpio =
 				<&wsa881x_analog_reset_gpio>;
@@ -185,6 +183,12 @@
 		};
 	};
 
+	wsa881x_analog_vi_gpio: wsa881x_analog_vi_pctrl {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&wsa_vi_on>;
+		pinctrl-1 = <&wsa_vi_off>;
+	};
 	wsa881x_analog_clk_gpio: wsa881x_analog_clk_pctrl {
 		compatible = "qcom,msm-cdc-pinctrl";
 		pinctrl-names = "aud_active", "aud_sleep";

@@ -27,7 +27,7 @@
 
 	gpio_keys {
 		compatible = "gpio-keys";
-		label = "gpio_keys";//modify for P200415-00645 by liufurong at 2020/04/15
+		label = "gpio-keys";
 		pinctrl-names = "default";
 		pinctrl-0 = <&gpio_key_active>;
 

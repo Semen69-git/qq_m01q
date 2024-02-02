@@ -32,7 +32,7 @@
 			compatible = "android,firmware";
 			vbmeta {
 				compatible = "android,vbmeta";
-				parts = "vbmeta,boot,system,vendor,product,odm,prism,optics,dtbo,recovery";
+				parts = "vbmeta,boot,system,vendor,dtbo,recovery";
 			};
 
 			fstab {
@@ -43,7 +43,7 @@
 					type = "ext4";
 					mnt_flags = "ro,barrier=1,discard";
 					fsmgr_flags = "wait,avb";
-					status = "disabled";
+					status = "ok";
 				};
 			};
 		};
@@ -129,7 +129,6 @@
 
 	aliases {
 		/* smdtty devices */
-		smd0 = &smdtty_ds;
 		smd1 = &smdtty_apps_fm;
 		smd2 = &smdtty_apps_riva_bt_acl;
 		smd3 = &smdtty_apps_riva_bt_cmd;
@@ -1011,20 +1010,12 @@
 		};
 	};
 
-	usb_noti: usb-notifier {
-		compatible = "samsung,usb-notifier";
-		qcom,disable_control_en = <1>;
-		qcom,unsupport_host_en = <0>;
-	};
-
 	qcom,wdt@b017000 {
 		compatible = "qcom,msm-watchdog";
 		reg = <0xb017000 0x1000>;
 		reg-names = "wdt-base";
 		interrupts = <0 3 0>, <0 4 0>;
-                /* HS60 code for HS60-764  by yanghui at 2019/09/04 start */
-		qcom,bark-time = <13000>;
-                /* HS60 code for HS60-764  by yanghui at 2019/09/04 end */
+		qcom,bark-time = <11000>;
 		qcom,pet-time = <9360>;
 		qcom,ipi-ping;
 		qcom,wakeup-enable;
@@ -1224,11 +1215,6 @@
 
 	qcom,smdtty {
 		compatible = "qcom,smdtty";
-
-		smdtty_ds: qcom,smdtty-ds {
-			qcom,smdtty-remote = "modem";
-			qcom,smdtty-port-name = "DS";
-		};
 
 		smdtty_apps_fm: qcom,smdtty-apps-fm {
 			qcom,smdtty-remote = "wcnss";
@@ -1859,12 +1845,6 @@
 		compatible = "qcom,msm-ssc-sensors";
 		status = "ok";
 	};
-// HS70 Code add by tangqingyong for SR-ZQL1871-01-99 at 20191022 Start
-        sdcard-det-pin {
-                compatible = "qcom,sdcard-detect-pin";
-                qcom,sdcard-detect-pin-no = <67>;
-        };
-// HS70 Code add by tangqingyong for SR-ZQL1871-01-99 at 20191022 end
 
 };
 
@@ -1946,11 +1926,4 @@
 	clock-names = "core_clk";
 	clocks = <&clock_gcc clk_gcc_oxili_gfx3d_clk>;
 	status = "okay";
-};
-
-/* FIXME: to prevent VTS issue */
-&firmware {
-	android {
-		/delete-node/ fstab;
-	};
 };

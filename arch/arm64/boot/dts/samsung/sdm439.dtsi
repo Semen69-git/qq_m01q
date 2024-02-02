@@ -250,18 +250,16 @@
 };
 
 &modem_mem {
-	reg = <0x0 0x86800000 0x0 0x5a00000>;
+	reg = <0x0 0x86800000 0x0 0x5500000>;
 };
 
-/* HS60 code for HS60-5873 by zhuqiang at 2020/11/25 start */
 &adsp_fw_mem {
-	reg = <0x0 0x8c200000 0x0 0x1400000>;
+	reg = <0x0 0x8bd00000 0x0 0x1100000>;
 };
 
 &wcnss_fw_mem {
-	reg = <0x0 0x8d600000 0x0 0x700000>;
+	reg = <0x0 0x8ce00000 0x0 0x700000>;
 };
-/* HS60 code for HS60-5873 by zhuqiang at 2020/11/25 end */
 
 &soc {
 	pil_gpu: qcom,kgsl-hyp {
@@ -731,10 +729,4 @@
 
 &usb_otg {
 	qcom,hsusb-otg-phy-init-seq = <0x43 0x80 0x06 0x82 0xffffffff>;
-};
-
-&pil_mss {
-	/* GPIO output to mss */
-	qcom,gpio-stop-reason-0 = <&smp2pgpio_ssr_smp2p_1_out 4 0>;
-	qcom,gpio-stop-reason-1 = <&smp2pgpio_ssr_smp2p_1_out 5 0>;
 };

@@ -12,10 +12,7 @@
  */
 
 #include "msm8937-mdss-panels.dtsi"
-//#include "sdm439-camera-sensor-qrd.dtsi"
-/* Huaqin add for HS60 camera dts change by zhangpeng at 2019/08/30 start */
-#include "zql1695/drivers/camera/sdm439-camera-sensor-qrd-zql1695.dtsi"
-/* Huaqin add for HS60 camera dts change by zhangpeng at 2019/08/30 end */
+#include "sdm439-camera-sensor-qrd.dtsi"
 
 &blsp1_uart2 {
 	status = "ok";
@@ -52,9 +49,7 @@
 	status = "okay";
 	qcom,model = "sdm439-sku1-snd-card";
 	qcom,msm-micbias1-ext-cap;
-	/* HS60 modify HS60-402 hardware micbias2 no ext cap by xudayi at 2019/08/12 start */
-	//qcom,msm-micbias2-ext-cap;
-	/* HS60 modify HS60-402 hardware micbias2 no ext cap by xudayi at 2019/08/12 end */
+	qcom,msm-micbias2-ext-cap;
 	qcom,msm-mbhc-hphl-swh = <1>;
 	qcom,msm-mbhc-gnd-swh = <0>;
 	qcom,msm-hs-micbias-type = "external";
@@ -137,7 +132,7 @@
 &soc {
 	gpio_keys: gpio_keys {
 		compatible = "gpio-keys";
-		label = "gpio_keys";//modify for P191212-08057 by liufurong at 20191213
+		label = "gpio-keys";
 		pinctrl-names = "default";
 		pinctrl-0 = <&gpio_key_active>;
 
